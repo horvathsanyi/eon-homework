@@ -12,7 +12,8 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY . /app
 
-RUN python3 -m venv env && source ./env/bin/activate
+RUN python3 -m venv env
+ENV PATH="env/bin:$PATH"
 
 # Install pip requirements
 RUN python -m pip install -r requirements.txt
@@ -25,4 +26,5 @@ USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # File wsgi.py was not found. Please enter the Python path to wsgi file.
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "./realworld/config.wsgi"]
+RUN python3 manage.py collectstatic
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--chdir", "realworld", "config.wsgi"]
