@@ -10,4 +10,4 @@ python manage.py migrate
 
 # Start server
 echo "Start server"
-gunicorn --bind 0.0.0.0:80 --chdir realworld config.wsgi
+gunicorn --bind 0.0.0.0:8000 --chdir realworld config.wsgi
