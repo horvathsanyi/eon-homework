@@ -4,5 +4,6 @@ venv
 env
 *.pyc
 *.sqlite3
-
-staticfiles
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup

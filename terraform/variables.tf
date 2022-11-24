@@ -20,7 +20,7 @@ variable "container_apps" {
     image           = "docker.io/horvathsanyi/eonhomework"
     name            = "eonhomework"
     tag             = "v2"
-    containerPort   = 80
+    containerPort   = 8000
     ingress_enabled = true
     min_replicas    = 1
     max_replicas    = 2

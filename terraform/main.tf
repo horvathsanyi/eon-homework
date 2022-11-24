@@ -55,7 +55,7 @@ resource "azapi_resource" "aca" {
       configuration = {
         ingress = {
           external   = each.value.ingress_enabled
-          targetPort = each.value.containerPort
+          targetPort = each.value.ingress_enabled ? each.value.containerPort : null
         }
       }
       template = {
@@ -73,13 +73,12 @@ resource "azapi_resource" "aca" {
           minReplicas = each.value.min_replicas
           maxReplicas = each.value.max_replicas
           rules = [{
-            "name" : "http-rule",
-            "http" : {
-              "metadata" : {
-                "concurrentRequests" : "100"
+            name = "http-rule",
+            http = {
+              metadata = {
+                concurrentRequests = "100"
               }
-            }
-          }]
+          } }]
         }
       }
     }
