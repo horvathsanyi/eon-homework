@@ -19,7 +19,7 @@ variable "container_apps" {
   default = [{
     image           = "docker.io/horvathsanyi/eonhomework"
     name            = "eonhomework"
-    tag             = "v2"
+    tag             = "v3"
     containerPort   = 8000
     ingress_enabled = true
     min_replicas    = 1
